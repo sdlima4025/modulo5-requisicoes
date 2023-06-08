@@ -5,8 +5,17 @@ function clickCalback() {
         return response.json();
     })
     .then((json)=> {
-        alert(`Titulo do post: ${json[0].title}`);
+        alert(`Alert 1 Titulo do post: ${json[0].title}`);
     })
+    // tratando erro com catch
+    .catch(()=> {
+        alert("Erro de calback!");
+       
+    })
+    // .finally(()=> {
+    //     alert("OPA, Calback finalizada!");
+    // })
+    // alert("Alert 2 função executa antes da promise!");
 
 };
 
