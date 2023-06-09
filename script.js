@@ -1,18 +1,27 @@
 // CallBack é uma função
-function clickCalback() {
-    fetch('https://jsonplaceholder.typicode.com/posts')
-    .then((response) => {
-        // console.log(`Status: ${response.status}`);
-        return response.json();
-    })
-    .then((json)=> {
-        alert(`Alert 1 Titulo do post: ${json[0].title}`);
-    })
-    // tratando erro com catch
-    .catch(()=> {
-        alert("Erro de calback!");
+//GET|POST|PUT|DELETE
+async function clickCalback() {
+
+    let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+    let json = await response.json();
+    alert(`Alert 1 Titulo do post: ${json[0].title}`);
+
+
+    // Requisição na forma sincrona
+    // .then((response) => {
+    //     console.log(`Status: ${response.status}`);
+    //     return response.json();
+    // })
+    // .then((json)=> {
+    //     alert(`Alert 1 Titulo do post: ${json[0].title}`);
+    // })
+    // // tratando erro com catch
+    // .catch(()=> {
+    //     alert("Erro de calback!");
        
-    })
+    // })
+
+    alert("Clicou!");
     // .finally(()=> {
     //     alert("OPA, Calback finalizada!");
     // })
@@ -20,8 +29,8 @@ function clickCalback() {
 
 };
 // Enviando dados via Methodo POST
-function inserir() {
-    fetch('https://jsonplaceholder.typicode.com/posts',
+async function inserir() {
+   let response = await fetch('https://jsonplaceholder.typicode.com/posts',
     {
         method: 'POST',
         headers: {
@@ -32,15 +41,21 @@ function inserir() {
             body: 'Methodo POST',
             userId: 2
         })
-    })
-.then((response)=> {
-    return response.json();
-})
-.then((json)=> {
-    console.log(json);
-})
+    });
+
+    let json = await response.json();
+        console.log(json);
+
+// .then((response)=> {
+//     return response.json();
+// })
+// .then((json)=> {
+//     console.log(json);
+// })
 }
-document.querySelector('#inserir').addEventListener('click', inserir);
+document.querySelector('#inserir')
+.addEventListener('click', inserir);
+
 document.querySelector('#botao')
 .addEventListener('click', clickCalback);
 
